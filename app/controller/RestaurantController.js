@@ -85,7 +85,7 @@ const RestaurantController = {
         let { mealtype, location, cuisine, lcost, hcost, page,sort,itemsPerPage} = request.body;
         sort = sort ? sort : 1;
         page = page ? page : 1;
-        itemsPerPage = itemsPerPage ? itemsPerPage : 3;
+        itemsPerPage = itemsPerPage ? itemsPerPage : 5;
      
         
         let staringIndex = page * itemsPerPage - itemsPerPage; 
