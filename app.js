@@ -18,7 +18,7 @@ console.log("connecting to db...");
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    app.listen(process.env.PORT, function () {
+    app.listen(process.env.PORT || 8900, function () {
       console.log("connected !!!");
       console.log(
         `zomato api is running on http://localhost:${process.env.PORT}`
