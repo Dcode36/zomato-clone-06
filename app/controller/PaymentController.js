@@ -1,12 +1,11 @@
 const { v4: uuidv4 } = require("uuid");
 const https = require('https')
 const Razorpay = require('razorpay');
-const { response } = require("express");
 
 
 var instance = new Razorpay({
-    key_id: process.env.KEY_ID,
-    key_secret: process.env.KEY_SECRET,
+    key_id: "rzp_test_OWEqu5W9NsKBZx",
+    key_secret:"2O86IaEjMmfVlsCW3CNvZQ15",
   });
 
 const PaymentController = {

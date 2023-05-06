@@ -1,10 +1,9 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
 const apiRouter = require("./app/router/api-router");
-
+require("dotenv").config();
 const app = express();
 
 app.use(cors());
@@ -16,7 +15,7 @@ app.use("/api", apiRouter);
 
 console.log("connecting to db...");
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect("mongodb://127.0.0.1:27017/zomatoapi")
   .then(() => {
     app.listen(process.env.PORT, function () {
       console.log("connected !!!");
