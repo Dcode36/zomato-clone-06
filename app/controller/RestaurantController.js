@@ -102,7 +102,7 @@ const RestaurantController = {
       filterObject["min_price"] = { $lte: hcost, $gte: lcost };
 
     cuisine && (filterObject["cuisine_id"] = { $in: cuisine });
-    console.log(filterObject);
+    // console.log(filterObject);
 
     try {
       let result = await RestaurantModel.find(filterObject, {

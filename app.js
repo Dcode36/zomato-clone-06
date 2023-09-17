@@ -15,7 +15,7 @@ app.use("/api", apiRouter);
 
 console.log("connecting to db...");
 mongoose
-  .connect("mongodb://127.0.0.1:27017/zomatoapi")
+  .connect("mongodb+srv://e-com:e-com@cluster0.kgr61gs.mongodb.net/Zomato")
   .then(() => {
     app.listen(process.env.PORT, function () {
       console.log("connected !!!");
