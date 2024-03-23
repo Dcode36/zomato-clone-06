@@ -54,25 +54,45 @@ const RestaurantController = {
     }
   },
 
-  getRestaurnatByLocationId: async function (request, responce) {
-    let { lid, rest } = request.query;
+  getRestaurnatByLocationId: async (request, response) => {
     try {
-      let data = await RestaurantModel.find(
-        {
-          name: { $regex: rest + ".*", $options: " i" },
-          location_id: Number(lid),
-        },
-        { name: 1, image: 1, locality: 1, _id: 1, city: 1 }
-      );
-      responce.status(200).send({
+      const { lid, rest } = request.query;
+      if (!lid || !rest) {
+        return response.status(400).json({
+          status: false,
+          message: "Missing required parameters",
+        });
+      }
+
+      const regex = new RegExp(rest, "i");
+      const restaurants = await RestaurantModel.find({
+        name: { $regex: regex },
+        location_id: Number(lid),
+      }, {
+        name: 1,
+        image: 1,
+        locality: 1,
+        _id: 1,
+        city: 1
+      });
+
+      if (restaurants.length === 0) {
+        return response.status(404).json({
+          status: false,
+          message: "No restaurants found for the given location ID and name",
+        });
+      }
+
+      return response.status(200).json({
         status: true,
-        result: data,
+        result: restaurants,
       });
     } catch (error) {
-      responce.status(500).send({
+      console.error("Error in getRestaurnatByLocationId:", error);
+      return response.status(500).json({
         status: false,
-        message: "server error",
-        error,
+        message: "Server error",
+        error: error.message,
       });
     }
   },

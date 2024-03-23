@@ -21,7 +21,7 @@ router.get('/get-location-by-city', location.getLocationByCity)
 router.get('/get-restaurant',restaurant.gerRestaurantList );
 router.post('/add-restaurant', restaurant.addRestaurantList);
 router.get('/get-restaurant-by-id/:id',restaurant.getRestaurnatById);
-router.get('/get-restaurnat-by-location-id',restaurant.getRestaurnatByLocationId)
+router.get('/get-restaurnat-by-location-id/',restaurant.getRestaurnatByLocationId)
 router.post('/filter', restaurant.filterRestaurant)
 
 // Users 
